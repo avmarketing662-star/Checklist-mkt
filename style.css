@@ -1,0 +1,1666 @@
+/* =========================================================
+   CHECKLIST MKT — SUPERMERCADO AVENIDA
+   ========================================================= */
+
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
+
+:root {
+
+    --azul-principal: #063B7A;
+    --azul: #0B6ED1;
+    --azul-medio: #1769aa;
+    --azul-claro: #eaf3ff;
+    --azul-suave: #f4f8fd;
+
+    --verde: #16a34a;
+    --verde-claro: #f0fdf4;
+    --verde-borda: #bbf7d0;
+
+    --amarelo: #f59e0b;
+    --amarelo-claro: #fffbeb;
+
+    --vermelho: #dc2626;
+    --vermelho-claro: #fef2f2;
+
+    --cinza-fundo: #f4f7fb;
+    --cinza-borda: #e3e8ef;
+    --cinza-texto: #6b7280;
+    --cinza-escuro: #374151;
+
+    --branco: #ffffff;
+
+    --sombra-pequena:
+        0 2px 8px rgba(15, 23, 42, 0.04);
+
+    --sombra:
+        0 6px 22px rgba(15, 23, 42, 0.07);
+
+    --sombra-hover:
+        0 10px 28px rgba(15, 23, 42, 0.10);
+
+    --raio: 16px;
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f5f8fc 0%,
+            #eef3f8 100%
+        );
+
+    color: #1f2937;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding: 28px;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.header {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #063B7A 0%,
+            #0757B8 55%,
+            #0B6ED1 100%
+        );
+
+    color: var(--branco);
+
+    border-radius: 20px;
+
+    padding: 34px 36px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(6, 59, 122, 0.20);
+
+}
+
+
+/* brilho decorativo */
+
+.header::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    right: -110px;
+    top: -170px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+}
+
+
+.header::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    right: 120px;
+    bottom: -130px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+}
+
+
+.header-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.header-tag {
+
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    margin-bottom: 12px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.header h1 {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.header p {
+
+    font-size: 15px;
+
+    color:
+        rgba(255,255,255,0.88);
+
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card {
+
+    background: var(--branco);
+
+    border:
+        1px solid
+        rgba(15,23,42,0.05);
+
+    border-radius: var(--raio);
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow: var(--sombra);
+
+    animation:
+        aparecer .25s ease;
+
+}
+
+
+/* =========================================================
+   CONTROLE DA SEMANA
+   ========================================================= */
+
+.week-control {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    min-height: 82px;
+
+}
+
+
+.week-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.week-button {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+    background: white;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 19px;
+
+    color:
+        var(--azul-principal);
+
+    transition:
+        .2s ease;
+
+}
+
+
+.week-button:hover {
+
+    background:
+        var(--azul-claro);
+
+    border-color:
+        #a8c9ed;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.week-button:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+.week-current {
+
+    min-width: 260px;
+
+    text-align: center;
+
+}
+
+
+.week-current strong {
+
+    display: block;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color:
+        var(--azul-principal);
+
+    margin-bottom: 5px;
+
+}
+
+
+.week-current span {
+
+    font-size: 13px;
+
+    color:
+        var(--cinza-texto);
+
+}
+
+
+/* =========================================================
+   BOTÃO HOJE
+   ========================================================= */
+
+.btn-hoje {
+
+    border: none;
+
+    background:
+        var(--azul);
+
+    color: white;
+
+    border-radius: 9px;
+
+    padding: 11px 18px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 10px
+        rgba(11,110,209,.18);
+
+    transition:
+        .2s ease;
+
+}
+
+
+.btn-hoje:hover {
+
+    background:
+        var(--azul-principal);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 14px
+        rgba(11,110,209,.22);
+
+}
+
+
+/* =========================================================
+   PROGRESSO
+   ========================================================= */
+
+.progress-area {
+
+    padding: 22px 24px;
+
+}
+
+
+.progress-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 11px;
+
+}
+
+
+.progress-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+    gap: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color:
+        var(--cinza-escuro);
+
+}
+
+
+.progress-value {
+
+    color:
+        var(--azul);
+
+    font-size: 14px;
+
+}
+
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 11px;
+
+    padding: 2px;
+
+    background:
+        #e9eef4;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0757B8,
+            #0B6ED1,
+            #1683e8
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(11,110,209,.25);
+
+    transition:
+        width .4s ease;
+
+}
+
+
+/* =========================================================
+   RESUMO
+   ========================================================= */
+
+.summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.summary-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: white;
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    box-shadow:
+        var(--sombra-pequena);
+
+    transition:
+        .2s ease;
+
+}
+
+
+.summary-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--sombra);
+
+}
+
+
+.summary-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    right: -20px;
+    bottom: -20px;
+
+    background:
+        var(--azul-claro);
+
+}
+
+
+.summary-label {
+
+    display: block;
+
+    font-size: 12px;
+
+    color:
+        var(--cinza-texto);
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.summary-card strong {
+
+    display: block;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+    color:
+        var(--azul-principal);
+
+}
+
+
+/* =========================================================
+   TÍTULO DA SEÇÃO
+   ========================================================= */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 18px;
+
+    color:
+        var(--azul-principal);
+
+    margin-bottom: 5px;
+
+}
+
+
+.section-header p {
+
+    font-size: 12px;
+
+    color:
+        var(--cinza-texto);
+
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.week-table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 14px;
+
+}
+
+
+.week-table {
+
+    width: 100%;
+
+    min-width: 850px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
+.week-table thead th {
+
+    background:
+        linear-gradient(
+            135deg,
+            #063B7A,
+            #0757B8
+        );
+
+    color: white;
+
+    padding: 16px 13px;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.12);
+
+}
+
+
+.week-table thead th:first-child {
+
+    text-align: left;
+
+    padding-left: 18px;
+
+    width: 145px;
+
+}
+
+
+.week-table thead th:last-child {
+
+    border-right: none;
+
+}
+
+
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
+.week-table tbody tr {
+
+    transition:
+        background .2s ease;
+
+}
+
+
+.week-table tbody tr:hover {
+
+    background:
+        #f9fbfd;
+
+}
+
+
+.week-table tbody tr:not(:last-child) td {
+
+    border-bottom:
+        1px solid
+        var(--cinza-borda);
+
+}
+
+
+/* =========================================================
+   CÉLULAS
+   ========================================================= */
+
+.week-table td {
+
+    padding: 10px;
+
+    vertical-align: middle;
+
+    background: white;
+
+    border-right:
+        1px solid
+        var(--cinza-borda);
+
+}
+
+
+.week-table td:last-child {
+
+    border-right: none;
+
+}
+
+
+/* =========================================================
+   DIA
+   ========================================================= */
+
+.day-cell {
+
+    min-width: 135px;
+
+    padding-left: 18px !important;
+
+    background:
+        #fbfcfe !important;
+
+}
+
+
+.day-name {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color:
+        var(--azul-principal);
+
+}
+
+
+.day-date {
+
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background:
+        #eef3f8;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   TAREFA
+   ========================================================= */
+
+.task {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 45px;
+
+    padding: 8px 10px;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        border .2s ease,
+        transform .15s ease;
+
+}
+
+
+.task:hover {
+
+    background:
+        rgba(255,255,255,.8);
+
+    border-color:
+        var(--cinza-borda);
+
+}
+
+
+.task:active {
+
+    transform:
+        scale(.99);
+
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.task-checkbox {
+
+    appearance: none;
+
+    width: 19px;
+
+    height: 19px;
+
+    min-width: 19px;
+
+    border:
+        2px solid
+        #b8c2cf;
+
+    border-radius: 6px;
+
+    background: white;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.task-checkbox:hover {
+
+    border-color:
+        var(--azul);
+
+}
+
+
+.task-checkbox:checked {
+
+    background:
+        var(--verde);
+
+    border-color:
+        var(--verde);
+
+}
+
+
+.task-checkbox:checked::after {
+
+    content: "✓";
+
+    position: absolute;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    left: 3px;
+
+    top: -1px;
+
+}
+
+
+/* =========================================================
+   TEXTO DA TAREFA
+   ========================================================= */
+
+.task-name {
+
+    font-size: 13px;
+
+    line-height: 1.35;
+
+    color:
+        #374151;
+
+    font-weight: 500;
+
+    transition:
+        .2s ease;
+
+}
+
+
+/* =========================================================
+   CONCLUÍDA
+   ========================================================= */
+
+.task.completed {
+
+    background:
+        var(--verde-claro);
+
+    border-color:
+        var(--verde-borda);
+
+}
+
+
+.task.completed .task-name {
+
+    color:
+        #7b8794;
+
+    text-decoration:
+        line-through;
+
+}
+
+
+.task.completed {
+
+    animation:
+        tarefaConcluida .25s ease;
+
+}
+
+
+/* =========================================================
+   CÉLULA VAZIA
+   ========================================================= */
+
+.empty-task {
+
+    min-height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color:
+        #d1d5db;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   CORES DAS COLUNAS
+   ========================================================= */
+
+.column-cafe {
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fffaf5
+        ) !important;
+
+}
+
+
+.column-promocao {
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fffdf5
+        ) !important;
+
+}
+
+
+.column-conteudo {
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f6faff
+        ) !important;
+
+}
+
+
+/* =========================================================
+   STATUS DE SALVAMENTO
+   ========================================================= */
+
+.save-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin:
+        3px 2px 20px;
+
+    color:
+        var(--verde);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.save-status::before {
+
+    content: "";
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--verde);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(22,163,74,.10);
+
+}
+
+
+/* =========================================================
+   AÇÕES
+   ========================================================= */
+
+.actions-card {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.actions-card h3 {
+
+    color:
+        var(--azul-principal);
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.actions-card p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+}
+
+
+.btn-danger {
+
+    border: none;
+
+    background:
+        var(--vermelho);
+
+    color: white;
+
+    border-radius: 9px;
+
+    padding: 10px 16px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.btn-danger:hover {
+
+    background:
+        #b91c1c;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   LEGENDA
+   ========================================================= */
+
+.legend {
+
+    display: flex;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    margin:
+        4px 2px 20px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+.legend-dot {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 3px;
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+}
+
+
+.completed-dot {
+
+    background:
+        var(--verde-claro);
+
+    border-color:
+        #86efac;
+
+}
+
+
+.pending-dot {
+
+    background:
+        white;
+
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.footer {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        10px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+}
+
+
+.footer strong {
+
+    color:
+        var(--azul-principal);
+
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(6px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes tarefaConcluida {
+
+    0% {
+
+        transform:
+            scale(.98);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.week-table-wrapper::-webkit-scrollbar {
+
+    height: 7px;
+
+}
+
+
+.week-table-wrapper::-webkit-scrollbar-track {
+
+    background:
+        #edf1f5;
+
+    border-radius: 10px;
+
+}
+
+
+.week-table-wrapper::-webkit-scrollbar-thumb {
+
+    background:
+        #b8c4d1;
+
+    border-radius: 10px;
+
+}
+
+
+.week-table-wrapper::-webkit-scrollbar-thumb:hover {
+
+    background:
+        #93a4b6;
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .summary {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .container {
+
+        padding: 12px;
+
+    }
+
+
+    .header {
+
+        padding: 25px 22px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .header p {
+
+        font-size: 13px;
+
+    }
+
+
+    .card {
+
+        padding: 15px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .week-control {
+
+        justify-content: center;
+
+        padding: 17px;
+
+    }
+
+
+    .week-navigation {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+
+    .week-current {
+
+        min-width: 180px;
+
+    }
+
+
+    .btn-hoje {
+
+        width: 100%;
+
+    }
+
+
+    .summary {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 9px;
+
+    }
+
+
+    .summary-card {
+
+        padding: 14px;
+
+    }
+
+
+    .summary-card strong {
+
+        font-size: 22px;
+
+    }
+
+
+    .summary-label {
+
+        font-size: 10px;
+
+    }
+
+
+    .actions-card {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .btn-danger {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .container {
+
+        padding: 8px;
+
+    }
+
+
+    .header {
+
+        padding: 22px 18px;
+
+    }
+
+
+    .header-tag {
+
+        font-size: 9px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .header p {
+
+        font-size: 12px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .week-current strong {
+
+        font-size: 15px;
+
+    }
+
+
+    .week-current span {
+
+        font-size: 11px;
+
+    }
+
+
+    .week-button {
+
+        width: 38px;
+
+        height: 38px;
+
+    }
+
+
+    .summary {
+
+        gap: 7px;
+
+    }
+
+
+    .summary-card {
+
+        padding: 12px 8px;
+
+        text-align: center;
+
+    }
+
+
+    .summary-card strong {
+
+        font-size: 20px;
+
+    }
+
+
+    .summary-label {
+
+        font-size: 9px;
+
+    }
+
+
+    .progress-area {
+
+        padding: 17px;
+
+    }
+
+
+    .section-header h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .section-header p {
+
+        font-size: 11px;
+
+    }
+
+
+    .footer {
+
+        flex-wrap: wrap;
+
+        font-size: 10px;
+
+    }
+
+}
