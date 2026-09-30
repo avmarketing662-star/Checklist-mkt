@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#1769e0"
+    >
+
+    <title>AVOPS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<section
+    class="login-page"
+    id="loginPage"
+>
+
+    <div class="login-container">
+
+        <div class="login-logo">
+            ✓
+        </div>
+
+        <h1>AVOPS</h1>
+
+        <p>
+            Entre para acessar o sistema operacional
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label for="loginNome">
+                    Usuário
+                </label>
+
+                <input
+                    type="text"
+                    id="loginNome"
+                    placeholder="Digite seu usuário"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="loginSenha">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="loginSenha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <p
+                class="login-error"
+                id="loginError"
+            ></p>
+
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     APLICAÇÃO
+========================================================= -->
+
+<div
+    class="app-shell"
+    id="appShell"
+>
+
+
+    <!-- =====================================================
+         MENU LATERAL
+    ====================================================== -->
+
+    <aside
+        class="drawer"
+        id="drawer"
+    >
+
+        <div class="drawer-top">
+
+            <div
+                class="profile-avatar"
+                id="profileAvatar"
+            >
+                --
+            </div>
+
+            <p>Bem-vindo,</p>
+
+            <h2 id="drawerUserName">
+                Usuário
+            </h2>
+
+            <span id="drawerStore">
+                Loja
+            </span>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-link active"
+                data-page="inicio"
+            >
+                <span>⌂</span>
+                <span>Início</span>
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="fluxograma"
+            >
+                <span>⤨</span>
+                <span>Fluxograma</span>
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="monitoramento"
+            >
+                <span>◉</span>
+                <span>Monitoramento</span>
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="ocorrencias"
+            >
+                <span>!</span>
+                <span>Ocorrências</span>
+            </button>
+
+
+            <!-- SOMENTE ADMINISTRADOR -->
+
+            <button
+                class="nav-link"
+                data-page="historico"
+                data-admin-only="true"
+                hidden
+            >
+                <span>◷</span>
+                <span>Histórico</span>
+            </button>
+
+
+            <button
+                class="nav-link"
+                data-page="relatorios"
+            >
+                <span>▦</span>
+                <span>Relatórios</span>
+            </button>
+
+
+            <!-- SOMENTE ADMINISTRADOR -->
+
+            <button
+                class="nav-link"
+                data-page="configuracoes"
+                data-admin-only="true"
+                hidden
+            >
+                <span>⚙</span>
+                <span>Configurações</span>
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         APLICAÇÃO MOBILE
+    ====================================================== -->
+
+    <main
+        class="phone"
+        id="mainApp"
+    >
+
+
+        <!-- =================================================
+             CABEÇALHO
+        ================================================== -->
+
+        <header class="topbar">
+
+            <button
+                class="icon-btn"
+                id="menuBtn"
+                aria-label="Abrir menu"
+            >
+                ☰
+            </button>
+
+
+            <div class="brand">
+
+                <span class="brand-mark">
+                    ✓
+                </span>
+
+                <span>
+                    AVOPS
+                </span>
+
+            </div>
+
+
+            <button
+                class="icon-btn notification"
+                id="notificationBtn"
+                aria-label="Notificações"
+            >
+                ♢
+
+                <b
+                    id="notificationCount"
+                    hidden
+                >
+                    0
+                </b>
+
+            </button>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PÁGINA: INÍCIO
+        ================================================== -->
+
+        <section
+            class="app-page active"
+            id="page-inicio"
+            data-page-content="inicio"
+        >
+
+            <section class="welcome">
+
+                <p id="welcomeUser">
+                    Olá 👋
+                </p>
+
+                <h1>
+                    Checklists de hoje
+                </h1>
+
+                <span id="welcomeStore">
+                    Loja
+                </span>
+
+            </section>
+
+
+            <!-- DATA -->
+
+            <section class="date-switcher">
+
+                <button
+                    id="prevDay"
+                    aria-label="Dia anterior"
+                >
+                    ‹
+                </button>
+
+
+                <div class="date-center">
+
+                    <strong id="dateTitle"></strong>
+
+                    <span id="weekday"></span>
+
+                    <small id="todayLabel"></small>
+
+                </div>
+
+
+                <button
+                    id="nextDay"
+                    aria-label="Próximo dia"
+                >
+                    ›
+                </button>
+
+            </section>
+
+
+            <!-- PROGRESSO -->
+
+            <section class="progress-card">
+
+                <div class="progress-head">
+
+                    <div>
+
+                        <span>
+                            Progresso do dia
+                        </span>
+
+                        <strong id="progressText">
+                            0 de 0 concluídos
+                        </strong>
+
+                    </div>
+
+                    <b id="progressPercent">
+                        0%
+                    </b>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        id="progressBar"
+                        style="width:0%"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHECKLISTS -->
+
+            <div class="section-title">
+
+                <h2>Checklists</h2>
+
+                <button id="todayBtn">
+                    Hoje
+                </button>
+
+            </div>
+
+
+            <section
+                class="checklist-list"
+                id="checklistList"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="emptyState"
+                hidden
+            >
+
+                <div>✓</div>
+
+                <h3>
+                    Nenhum checklist neste dia
+                </h3>
+
+                <p>
+                    Use as setas acima para consultar outra data.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: FLUXOGRAMA
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-fluxograma"
+            data-page-content="fluxograma"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Rotina operacional
+                </span>
+
+                <h1>Fluxograma</h1>
+
+                <p>
+                    Consulte a sequência de atividades diárias
+                    de cada setor.
+                </p>
+
+            </div>
+
+
+            <!-- SELEÇÃO DO SETOR -->
+
+            <div class="field-group">
+
+                <label for="fluxogramaSetor">
+                    Setor
+                </label>
+
+                <select id="fluxogramaSetor">
+
+                    <option value="">
+                        Selecione um setor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- FLUXO GERADO PELO JS -->
+
+            <section
+                class="flow-list"
+                id="fluxogramaLista"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="fluxogramaEmpty"
+            >
+
+                <div>⤨</div>
+
+                <h3>
+                    Selecione um setor
+                </h3>
+
+                <p>
+                    As atividades diárias aparecerão aqui.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: MONITORAMENTO
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-monitoramento"
+            data-page-content="monitoramento"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Operação
+                </span>
+
+                <h1>Monitoramento</h1>
+
+                <p id="monitoramentoLoja">
+                    Acompanhe a situação operacional da loja.
+                </p>
+
+            </div>
+
+
+            <!-- RESUMO -->
+
+            <section class="monitor-grid">
+
+                <article class="monitor-card">
+
+                    <span>✓</span>
+
+                    <div>
+                        <small>Concluídos</small>
+                        <strong id="monitorConcluidos">0</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="monitor-card">
+
+                    <span>◷</span>
+
+                    <div>
+                        <small>Pendentes</small>
+                        <strong id="monitorPendentes">0</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="monitor-card">
+
+                    <span>!</span>
+
+                    <div>
+                        <small>Atenção</small>
+                        <strong id="monitorAtencao">0</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="monitor-card">
+
+                    <span>◉</span>
+
+                    <div>
+                        <small>Em andamento</small>
+                        <strong id="monitorAndamento">0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <div class="section-title">
+
+                <h2>Situação dos setores</h2>
+
+            </div>
+
+
+            <section
+                id="monitoramentoSetores"
+                class="monitor-sector-list"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="monitoramentoEmpty"
+            >
+
+                <div>◉</div>
+
+                <h3>
+                    Nenhum dado disponível
+                </h3>
+
+                <p>
+                    Os dados operacionais aparecerão aqui.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: OCORRÊNCIAS
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-ocorrencias"
+            data-page-content="ocorrencias"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Registro operacional
+                </span>
+
+                <h1>Ocorrências</h1>
+
+                <p>
+                    Registre e acompanhe problemas encontrados
+                    durante a operação.
+                </p>
+
+            </div>
+
+
+            <button
+                class="primary-action"
+                id="novaOcorrenciaBtn"
+            >
+                + Nova ocorrência
+            </button>
+
+
+            <div class="filter-row">
+
+                <button
+                    class="filter-chip active"
+                    data-occurrence-filter="abertas"
+                >
+                    Abertas
+                </button>
+
+                <button
+                    class="filter-chip"
+                    data-occurrence-filter="concluidas"
+                >
+                    Concluídas
+                </button>
+
+                <button
+                    class="filter-chip"
+                    data-occurrence-filter="todas"
+                >
+                    Todas
+                </button>
+
+            </div>
+
+
+            <section
+                class="occurrence-list"
+                id="ocorrenciasLista"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="ocorrenciasEmpty"
+            >
+
+                <div>!</div>
+
+                <h3>
+                    Nenhuma ocorrência
+                </h3>
+
+                <p>
+                    As ocorrências registradas aparecerão aqui.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: HISTÓRICO
+             SOMENTE ADM
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-historico"
+            data-page-content="historico"
+            data-admin-only="true"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Administração
+                </span>
+
+                <h1>Histórico</h1>
+
+                <p>
+                    Consulte checklists executados anteriormente.
+                </p>
+
+            </div>
+
+
+            <section class="filters-card">
+
+                <div class="field-group">
+
+                    <label for="historicoDataInicio">
+                        De
+                    </label>
+
+                    <input
+                        type="date"
+                        id="historicoDataInicio"
+                    >
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="historicoDataFim">
+                        Até
+                    </label>
+
+                    <input
+                        type="date"
+                        id="historicoDataFim"
+                    >
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="historicoSetor">
+                        Setor
+                    </label>
+
+                    <select id="historicoSetor">
+
+                        <option value="">
+                            Todos os setores
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="historicoUsuario">
+                        Funcionário
+                    </label>
+
+                    <select id="historicoUsuario">
+
+                        <option value="">
+                            Todos os funcionários
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="primary-action"
+                    id="buscarHistoricoBtn"
+                >
+                    Buscar
+                </button>
+
+            </section>
+
+
+            <section
+                class="history-list"
+                id="historicoLista"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="historicoEmpty"
+            >
+
+                <div>◷</div>
+
+                <h3>
+                    Nenhum registro encontrado
+                </h3>
+
+                <p>
+                    Utilize os filtros para consultar o histórico.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: RELATÓRIOS
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-relatorios"
+            data-page-content="relatorios"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Indicadores
+                </span>
+
+                <h1>Relatórios</h1>
+
+                <p>
+                    Acompanhe os principais indicadores
+                    operacionais.
+                </p>
+
+            </div>
+
+
+            <div class="field-group">
+
+                <label for="relatorioPeriodo">
+                    Período
+                </label>
+
+                <select id="relatorioPeriodo">
+
+                    <option value="hoje">
+                        Hoje
+                    </option>
+
+                    <option value="semana">
+                        Esta semana
+                    </option>
+
+                    <option value="mes">
+                        Este mês
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <section class="report-grid">
+
+                <article class="report-card">
+
+                    <small>
+                        Taxa de conclusão
+                    </small>
+
+                    <strong id="reportConclusao">
+                        0%
+                    </strong>
+
+                </article>
+
+
+                <article class="report-card">
+
+                    <small>
+                        Checklists realizados
+                    </small>
+
+                    <strong id="reportRealizados">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="report-card">
+
+                    <small>
+                        Respostas negativas
+                    </small>
+
+                    <strong id="reportNegativas">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="report-card">
+
+                    <small>
+                        Ocorrências
+                    </small>
+
+                    <strong id="reportOcorrencias">
+                        0
+                    </strong>
+
+                </article>
+
+            </section>
+
+
+            <div class="section-title">
+
+                <h2>
+                    Por setor
+                </h2>
+
+            </div>
+
+
+            <section
+                id="relatorioSetores"
+                class="report-sector-list"
+            ></section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: PERFIL
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-perfil"
+            data-page-content="perfil"
+            hidden
+        >
+
+            <div class="profile-page">
+
+                <div
+                    class="profile-large-avatar"
+                    id="profilePageAvatar"
+                >
+                    --
+                </div>
+
+
+                <h1 id="profilePageName">
+                    Usuário
+                </h1>
+
+
+                <span id="profilePageRole">
+                    Funcionário
+                </span>
+
+
+                <div class="profile-info-card">
+
+                    <div>
+
+                        <small>
+                            Loja
+                        </small>
+
+                        <strong id="profilePageStore">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Perfil
+                        </small>
+
+                        <strong id="profilePageAccess">
+                            Usuário
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="secondary-action danger-text"
+                    id="logoutBtn"
+                >
+                    Sair da conta
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PÁGINA: CONFIGURAÇÕES
+             SOMENTE ADM
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-configuracoes"
+            data-page-content="configuracoes"
+            data-admin-only="true"
+            hidden
+        >
+
+            <div class="page-header">
+
+                <span class="page-kicker">
+                    Administração
+                </span>
+
+                <h1>Configurações</h1>
+
+                <p>
+                    Gerencie a estrutura operacional da loja.
+                </p>
+
+            </div>
+
+
+            <section class="settings-list">
+
+
+                <!-- EDITAR CHECKLIST -->
+
+                <button
+                    class="settings-card"
+                    data-page="editar-checklists"
+                    data-admin-only="true"
+                >
+
+                    <span class="settings-icon">
+                        ✓
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Editar checklists
+                        </strong>
+
+                        <small>
+                            Crie, altere ou remova checklists
+                            e suas tarefas.
+                        </small>
+
+                    </div>
+
+
+                    <span class="settings-arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+
+                <!-- EDITAR FLUXOGRAMA -->
+
+                <button
+                    class="settings-card"
+                    data-page="editar-fluxograma"
+                    data-admin-only="true"
+                >
+
+                    <span class="settings-icon">
+                        ⤨
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Editar fluxograma
+                        </strong>
+
+                        <small>
+                            Organize as atividades diárias
+                            de cada setor.
+                        </small>
+
+                    </div>
+
+
+                    <span class="settings-arrow">
+                        ›
+                    </span>
+
+                </button>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADMIN: EDITAR CHECKLISTS
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-editar-checklists"
+            data-page-content="editar-checklists"
+            data-admin-only="true"
+            hidden
+        >
+
+            <div class="subpage-header">
+
+                <button
+                    class="subpage-back"
+                    data-page="configuracoes"
+                >
+                    ‹
+                </button>
+
+
+                <div>
+
+                    <span>
+                        Configurações
+                    </span>
+
+                    <h1>
+                        Editar checklists
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-action"
+                id="novoChecklistBtn"
+            >
+                + Novo checklist
+            </button>
+
+
+            <div class="field-group">
+
+                <label for="adminChecklistSetor">
+                    Filtrar por setor
+                </label>
+
+                <select id="adminChecklistSetor">
+
+                    <option value="">
+                        Todos os setores
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <section
+                class="admin-list"
+                id="adminChecklistLista"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="adminChecklistEmpty"
+            >
+
+                <div>✓</div>
+
+                <h3>
+                    Nenhum checklist cadastrado
+                </h3>
+
+                <p>
+                    Crie o primeiro checklist da loja.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADMIN: EDITAR FLUXOGRAMA
+        ================================================== -->
+
+        <section
+            class="app-page"
+            id="page-editar-fluxograma"
+            data-page-content="editar-fluxograma"
+            data-admin-only="true"
+            hidden
+        >
+
+            <div class="subpage-header">
+
+                <button
+                    class="subpage-back"
+                    data-page="configuracoes"
+                >
+                    ‹
+                </button>
+
+
+                <div>
+
+                    <span>
+                        Configurações
+                    </span>
+
+                    <h1>
+                        Editar fluxograma
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="field-group">
+
+                <label for="adminFluxogramaSetor">
+                    Setor
+                </label>
+
+                <select id="adminFluxogramaSetor">
+
+                    <option value="">
+                        Selecione um setor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="primary-action"
+                id="novaAtividadeFluxoBtn"
+            >
+                + Nova atividade
+            </button>
+
+
+            <section
+                class="admin-flow-list"
+                id="adminFluxogramaLista"
+            ></section>
+
+
+            <section
+                class="empty-state"
+                id="adminFluxogramaEmpty"
+            >
+
+                <div>⤨</div>
+
+                <h3>
+                    Nenhuma atividade
+                </h3>
+
+                <p>
+                    Selecione um setor e adicione
+                    as atividades da rotina.
+                </p>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BARRA INFERIOR
+        ================================================== -->
+
+        <nav class="bottom-nav">
+
+            <button
+                class="active"
+                data-page="inicio"
+            >
+                <span>⌂</span>
+                Início
+            </button>
+
+
+            <button
+                data-page="fluxograma"
+            >
+                <span>⤨</span>
+                Fluxograma
+            </button>
+
+
+            <button
+                data-page="ocorrencias"
+            >
+                <span>!</span>
+                Ocorrências
+            </button>
+
+
+            <button
+                data-page="perfil"
+            >
+                <span>♙</span>
+                Perfil
+            </button>
+
+        </nav>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MODAL: EXECUTAR CHECKLIST
+    ====================================================== -->
+
+    <div
+        class="task-modal"
+        id="taskModal"
+        aria-hidden="true"
+    >
+
+        <div class="task-sheet">
+
+            <div class="sheet-handle"></div>
+
+
+            <div class="task-head">
+
+                <button
+                    class="back-btn"
+                    id="closeTask"
+                    aria-label="Voltar"
+                >
+                    ‹
+                </button>
+
+
+                <span>
+                    Executar checklist
+                </span>
+
+
+                <button
+                    class="more-btn"
+                    aria-label="Mais opções"
+                >
+                    •••
+                </button>
+
+            </div>
+
+
+            <div class="task-content">
+
+                <span
+                    class="task-category"
+                    id="taskCategory"
+                ></span>
+
+
+                <h2 id="taskTitle"></h2>
+
+
+                <p id="taskMeta"></p>
+
+
+                <div class="mini-progress">
+
+                    <div>
+
+                        <span id="taskCount">
+                            0/0
+                        </span>
+
+                        <b id="taskPercent">
+                            0%
+                        </b>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            id="taskProgressBar"
+                            style="width:0%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="questions"></div>
+
+            </div>
+
+
+            <div class="task-footer">
+
+                <button id="finishBtn">
+                    Salvar checklist
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODAL: CRIAR / EDITAR CHECKLIST
+         SOMENTE ADM
+    ====================================================== -->
+
+    <div
+        class="form-modal"
+        id="checklistEditorModal"
+        aria-hidden="true"
+        data-admin-only="true"
+        hidden
+    >
+
+        <div class="form-sheet">
+
+            <div class="sheet-handle"></div>
+
+
+            <div class="task-head">
+
+                <button
+                    class="back-btn"
+                    id="closeChecklistEditor"
+                >
+                    ‹
+                </button>
+
+
+                <span id="checklistEditorTitle">
+                    Novo checklist
+                </span>
+
+
+                <span></span>
+
+            </div>
+
+
+            <form
+                class="editor-form"
+                id="checklistEditorForm"
+            >
+
+
+                <input
+                    type="hidden"
+                    id="editChecklistId"
+                >
+
+
+                <div class="field-group">
+
+                    <label for="editChecklistNome">
+                        Nome do checklist
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editChecklistNome"
+                        placeholder="Ex.: Abertura da loja"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editChecklistSetor">
+                        Setor
+                    </label>
+
+                    <select
+                        id="editChecklistSetor"
+                        required
+                    ></select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editChecklistUsuario">
+                        Quem deve realizar?
+                    </label>
+
+                    <select id="editChecklistUsuario">
+
+                        <option value="">
+                            Todos da loja
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="field-group">
+
+                        <label for="editHorarioInicio">
+                            Início
+                        </label>
+
+                        <input
+                            type="time"
+                            id="editHorarioInicio"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field-group">
+
+                        <label for="editHorarioFim">
+                            Fim
+                        </label>
+
+                        <input
+                            type="time"
+                            id="editHorarioFim"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editRepeticao">
+                        Repetição
+                    </label>
+
+                    <select
+                        id="editRepeticao"
+                        required
+                    >
+
+                        <option value="diario">
+                            Diário
+                        </option>
+
+                        <option value="semanal">
+                            Semanal
+                        </option>
+
+                        <option value="quinzenal">
+                            Quinzenal
+                        </option>
+
+                        <option value="mensal">
+                            Mensal
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CAMPOS DINÂMICOS DA REPETIÇÃO -->
+
+                <div
+                    class="field-group"
+                    id="grupoDiaSemana"
+                    hidden
+                >
+
+                    <label for="editDiaSemana">
+                        Dia da semana
+                    </label>
+
+                    <select id="editDiaSemana">
+
+                        <option value="1">Segunda-feira</option>
+                        <option value="2">Terça-feira</option>
+                        <option value="3">Quarta-feira</option>
+                        <option value="4">Quinta-feira</option>
+                        <option value="5">Sexta-feira</option>
+                        <option value="6">Sábado</option>
+                        <option value="0">Domingo</option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="field-group"
+                    id="grupoDiaMes"
+                    hidden
+                >
+
+                    <label for="editDiaMes">
+                        Dia do mês
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editDiaMes"
+                        min="1"
+                        max="31"
+                    >
+
+                </div>
+
+
+
+                <!-- TAREFAS -->
+
+                <div class="editor-section-title">
+
+                    <div>
+
+                        <span>
+                            Tarefas
+                        </span>
+
+                        <small>
+                            Itens que serão respondidos pelo funcionário
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="adicionarTarefaBtn"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+
+                <div id="editorTarefas"></div>
+
+
+                <button
+                    type="submit"
+                    class="primary-action"
+                    id="salvarChecklistEditor"
+                >
+                    Salvar checklist
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODAL: CRIAR / EDITAR ATIVIDADE DO FLUXOGRAMA
+         SOMENTE ADM
+    ====================================================== -->
+
+    <div
+        class="form-modal"
+        id="fluxogramaEditorModal"
+        aria-hidden="true"
+        data-admin-only="true"
+        hidden
+    >
+
+        <div class="form-sheet">
+
+            <div class="sheet-handle"></div>
+
+
+            <div class="task-head">
+
+                <button
+                    class="back-btn"
+                    id="closeFluxogramaEditor"
+                >
+                    ‹
+                </button>
+
+
+                <span id="fluxogramaEditorTitle">
+                    Nova atividade
+                </span>
+
+
+                <span></span>
+
+            </div>
+
+
+            <form
+                class="editor-form"
+                id="fluxogramaEditorForm"
+            >
+
+                <input
+                    type="hidden"
+                    id="editFluxogramaId"
+                >
+
+
+                <div class="field-group">
+
+                    <label for="editFluxogramaSetor">
+                        Setor
+                    </label>
+
+                    <select
+                        id="editFluxogramaSetor"
+                        required
+                    ></select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editFluxogramaTitulo">
+                        Atividade
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editFluxogramaTitulo"
+                        placeholder="Ex.: Conferir equipamentos"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editFluxogramaDescricao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="editFluxogramaDescricao"
+                        placeholder="Explique brevemente esta etapa"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="editFluxogramaOrdem">
+                        Ordem
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editFluxogramaOrdem"
+                        min="1"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-action"
+                >
+                    Salvar atividade
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
